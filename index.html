@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="description" content="LibroLab: crea libros infantiles, libros para colorear y publicaciones profesionales.">
+  <title>LibroLab · Tu estudio editorial</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="LibroLab inicio"><span class="brand-mark">L</span><span>Libro<span class="brand-light">Lab</span></span></a>
+    <div class="topbar-actions">
+      <span class="save-status" id="saveStatus" aria-live="polite"><i></i> Guardado local</span>
+      <button class="button button-quiet" id="helpButton" type="button">Guía rápida</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="welcomeScreen" class="welcome screen">
+      <div class="welcome-copy">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> TU ESTUDIO EDITORIAL PERSONAL</span>
+        <h1>Las ideas también<br>merecen <em>páginas.</em></h1>
+        <p class="intro">Crea algo que valga la pena abrir. Desde el primer dibujo hasta una publicación lista para revisar.</p>
+      </div>
+      <div class="mode-grid">
+        <button class="mode-card mode-kids" data-mode="basic" type="button">
+          <span class="mode-card-top"><span class="mode-icon">✳</span><span class="mode-arrow">↗</span></span>
+          <span class="mode-title">Crear jugando</span>
+          <span class="mode-desc">Cuentos, dibujos y libros para colorear. Simple desde la primera página.</span>
+          <span class="mode-tags"><span>PARA EMPEZAR</span><span>01</span></span>
+          <span class="art-art" aria-hidden="true"><span class="sun"></span><span class="hill hill-one"></span><span class="hill hill-two"></span><span class="star star-one">✦</span><span class="star star-two">✧</span><span class="little-book">☺</span></span>
+        </button>
+        <button class="mode-card mode-pro" data-mode="pro" type="button">
+          <span class="mode-card-top"><span class="mode-icon">▤</span><span class="mode-arrow">↗</span></span>
+          <span class="mode-title">Estudio profesional</span>
+          <span class="mode-desc">Controla formato, composición, tipografía y estructura de tus publicaciones.</span>
+          <span class="mode-tags"><span>CONTROL EDITORIAL</span><span>02</span></span>
+          <span class="pro-art" aria-hidden="true"><span class="pro-page"></span><span class="pro-page pro-page-back"></span><span class="pro-lines"></span></span>
+        </button>
+      </div>
+      <div class="welcome-bottom"><span>✳ Un espacio para imaginar sin pedir permiso.</span><span>GUARDADO EN TU DISPOSITIVO · SIN CUENTA</span></div>
+    </section>
+
+    <section id="editorScreen" class="editor-screen screen hidden">
+      <aside class="sidebar">
+        <button class="back-home" id="backHome" type="button">← <span>Todos los proyectos</span></button>
+        <div class="side-project">
+          <span class="side-label">PROYECTO ACTUAL</span>
+          <strong id="sideProjectTitle">Mi primer libro</strong>
+          <span id="modePill" class="mode-pill">MODO BÁSICO</span>
+        </div>
+        <div class="side-label page-heading">PÁGINAS <span id="pageCount">1</span></div>
+        <div id="pageList" class="page-list" aria-label="Páginas del libro"></div>
+        <button class="add-page-button" id="addPage" type="button">＋ Añadir página</button>
+        <div class="sidebar-bottom">
+          <button class="side-action" id="renameProject" type="button">✎ <span>Nombre del libro</span></button>
+          <button class="side-action" id="deleteProject" type="button">⌫ <span>Eliminar proyecto</span></button>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <div class="editor-toolbar">
+          <div class="toolbar-left">
+            <button class="icon-button mobile-menu" id="mobilePages" aria-label="Mostrar páginas" type="button">☰</button>
+            <span class="breadcrumb">LIBROLAB <span>/</span> <strong id="toolbarTitle">Mi primer libro</strong></span>
+          </div>
+          <div class="toolbar-actions">
+            <button class="button button-quiet" id="previewButton" type="button">Vista previa</button>
+            <button class="button button-dark" id="exportButton" type="button">Exportar PDF ↗</button>
+          </div>
+        </div>
+
+        <div class="canvas-area">
+          <div class="canvas-meta"><span id="pageMeta">PÁGINA 01</span><span id="canvasHint">Lienzo A4 · Vertical</span></div>
+          <article id="pageCanvas" class="page-canvas" aria-label="Página editable del libro">
+            <div class="page-content">
+              <div class="page-art-placeholder">✳</div>
+              <h2 contenteditable="true" data-field="title" spellcheck="false">Un mundo por descubrir</h2>
+              <p contenteditable="true" data-field="body" spellcheck="true">Cada gran historia comienza con una pequeña idea.</p>
+            </div>
+          </article>
+          <div class="canvas-footer"><span>Haz clic en los textos para editarlos</span><span>CAMBIOS GUARDADOS AUTOMÁTICAMENTE</span></div>
+        </div>
+      </section>
+
+      <aside class="inspector">
+        <div class="inspector-head"><div><span class="side-label">PERSONALIZAR</span><h2>Tu página</h2></div><span class="inspector-spark">✳</span></div>
+        <div class="tool-section">
+          <label class="field-label" for="bookTitle">Título del proyecto</label>
+          <input id="bookTitle" class="text-input" maxlength="90" value="Mi primer libro">
+        </div>
+        <div class="tool-section">
+          <span class="field-label">Tipo de página</span>
+          <div class="type-grid">
+            <button class="type-button active" data-template="story" type="button"><span>▤</span> Cuento</button>
+            <button class="type-button" data-template="coloring" type="button"><span>◯</span> Colorear</button>
+            <button class="type-button" data-template="image" type="button"><span>▧</span> Solo imagen</button>
+            <button class="type-button" data-template="notes" type="button"><span>☷</span> Texto</button>
+          </div>
+        </div>
+        <div class="tool-section">
+          <span class="field-label">Añadir contenido</span>
+          <div class="content-actions">
+            <label class="upload-action" for="imageUpload"><span>↥</span><span><strong>Subir imagen</strong><small>JPG, PNG, WEBP</small></span></label>
+            <input id="imageUpload" type="file" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+            <button class="upload-action" id="libraryButton" type="button"><span>✳</span><span><strong>Biblioteca</strong><small>Ilustraciones incluidas</small></span></button>
+            <button class="upload-action" id="aiButton" type="button"><span>✧</span><span><strong>Crear con IA</strong><small>Preparar una ilustración</small></span></button>
+          </div>
+        </div>
+        <div class="tool-section">
+          <span class="field-label">Estilo de página</span>
+          <div class="swatches" role="group" aria-label="Color de fondo">
+            <button class="swatch selected" data-color="#fffdf8" style="--swatch:#fffdf8" aria-label="Marfil" type="button"></button>
+            <button class="swatch" data-color="#f2f0e8" style="--swatch:#f2f0e8" aria-label="Papel" type="button"></button>
+            <button class="swatch" data-color="#f8e7df" style="--swatch:#f8e7df" aria-label="Rosa suave" type="button"></button>
+            <button class="swatch" data-color="#e4ece3" style="--swatch:#e4ece3" aria-label="Verde suave" type="button"></button>
+            <button class="swatch" data-color="#e6edf6" style="--swatch:#e6edf6" aria-label="Azul suave" type="button"></button>
+          </div>
+          <label class="field-label range-label" for="fontScale">Tamaño de texto <output id="fontScaleOutput">100%</output></label>
+          <input id="fontScale" class="range-input" type="range" min="80" max="140" step="5" value="100">
+        </div>
+        <div class="tool-section pro-only hidden">
+          <span class="field-label">Formato editorial</span>
+          <select id="pageSize" class="text-input">
+            <option value="a4">A4 · 210 × 297 mm</option>
+            <option value="letter">Carta · 8.5 × 11 in</option>
+            <option value="square">Cuadrado · 210 × 210 mm</option>
+          </select>
+          <p class="microcopy">El formato se aplica a la exportación. Comprueba siempre las especificaciones de tu imprenta.</p>
+        </div>
+        <div class="inspector-bottom"><span class="status-dot"></span><span>Tu trabajo permanece en este dispositivo.</span></div>
+      </aside>
+    </section>
+  </main>
+
+  <dialog id="modal" class="modal">
+    <div class="modal-head"><div><span class="eyebrow">LIBROLAB STUDIO</span><h2 id="modalTitle">Biblioteca creativa</h2></div><button class="icon-button" id="closeModal" aria-label="Cerrar" type="button">×</button></div>
+    <div id="modalBody" class="modal-body"></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <footer class="site-footer"><span>LibroLab <span class="footer-dot">✳</span> Hecho para las ideas que toman forma.</span><span>PROTOTIPO ABIERTO · VERSIÓN 0.1.0</span></footer>
+  <script src="./app.js"></script>
+</body>
+</html>
